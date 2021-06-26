@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog">
+
+    <changeSet id="1" author="testuser">
+        <createTable tableName="eventTable">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+
+            </column>
+            <column name="message" type="varchar(100)"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
