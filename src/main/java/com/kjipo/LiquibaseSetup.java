@@ -1,7 +1,7 @@
 package com.kjipo;
 
 
-import liquibase.integration.spring.SpringLiquibase;
+//import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.context.annotation.Bean;
 
 

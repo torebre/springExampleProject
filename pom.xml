@@ -38,10 +38,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.liquibase</groupId>
-            <artifactId>liquibase-core</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--&lt;!&ndash;&lt;!&ndash;            <groupId>org.liquibase</groupId>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;            <artifactId>liquibase-core</artifactId>&ndash;&gt;-->
+<!--        </dependency>-->
         <!--        <dependency>-->
         <!--            <groupId>org.thymeleaf.extras</groupId>-->
         <!--            <artifactId>thymeleaf-extras-springsecurity5</artifactId>-->
@@ -177,14 +177,14 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-            <plugin>
-                <groupId>org.liquibase</groupId>
-                <artifactId>liquibase-maven-plugin</artifactId>
-                <version>3.4.1</version>
-                <configuration>
-                    <propertyFile>src/main/resources/liquibase.properties</propertyFile>
-                </configuration>
-            </plugin>
+<!--            <plugin>-->
+<!--&lt;!&ndash;&lt;!&ndash;&lt;!&ndash;&lt;!&ndash;&lt;!&ndash;&lt;!&ndash;                <groupId>org.liquibase</groupId>&ndash;&gt;&ndash;&gt;&ndash;&gt;&ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;&lt;!&ndash;&lt;!&ndash;&lt;!&ndash;                <artifactId>liquibase-maven-plugin</artifactId>&ndash;&gt;&ndash;&gt;&ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;&lt;!&ndash;&lt;!&ndash;                <version>3.4.1</version>&ndash;&gt;&ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;&lt;!&ndash;                <configuration>&ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                    <propertyFile>src/main/resources/liquibase.properties</propertyFile>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                </configuration>&ndash;&gt;-->
+<!--            </plugin>-->
         </plugins>
     </build>
 
