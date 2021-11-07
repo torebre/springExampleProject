@@ -22,11 +22,6 @@ public class ReactiveClientWebSocket {
                         .log())
                 .then())
                 .block(Duration.ofSeconds(10L));
-
-
-
     }
-
-
 
 }
