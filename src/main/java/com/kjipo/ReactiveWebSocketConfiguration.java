@@ -1,5 +1,7 @@
 package com.kjipo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -15,8 +17,10 @@ import java.util.Map;
 @Configuration
 public class ReactiveWebSocketConfiguration {
 
+    private static final Logger logger = LoggerFactory.getLogger(ReactiveWebSocketConfiguration.class);
+
     @Autowired
-    @Qualifier("ReactiveWebSocketHandler")
+//    @Qualifier("ReactiveWebSocketHandler")
     private WebSocketHandler webSocketHandler;
 
 
@@ -24,6 +28,8 @@ public class ReactiveWebSocketConfiguration {
     public HandlerMapping webSocketHandlerMapping() {
         Map<String, WebSocketHandler> map = new HashMap<>();
         map.put("/event-emitter", webSocketHandler);
+
+//        logger.info("Test23");
 
         SimpleUrlHandlerMapping handlerMapping = new SimpleUrlHandlerMapping();
         handlerMapping.setOrder(1);

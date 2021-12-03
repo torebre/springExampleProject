@@ -1,4 +1,4 @@
-package com.kjipo;
+package com.kjipo.webSocketClient;
 
 
 import org.springframework.web.reactive.socket.WebSocketMessage;
