@@ -1,0 +1,6 @@
+{
+    bookById(id: "book-2") {
+        name
+    }
+
+}

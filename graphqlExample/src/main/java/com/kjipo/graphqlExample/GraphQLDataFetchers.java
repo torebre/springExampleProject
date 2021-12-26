@@ -44,6 +44,9 @@ public class GraphQLDataFetchers {
             String bookId = dataFetchingEnvironment.getArgument("id");
             return books
                     .stream()
+                    .peek(id -> {
+                        System.out.println("ID: " +id);
+                    })
                     .filter(book -> book.get("id").equals(bookId))
                     .findFirst()
                     .orElse(null);
