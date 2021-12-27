@@ -3,6 +3,8 @@ package com.kjipo.graphqlExample;
 
 import com.google.common.collect.ImmutableMap;
 import graphql.schema.DataFetcher;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -12,7 +14,9 @@ import java.util.Map;
 @Component
 public class GraphQLDataFetchers {
 
-    private static List<Map<String, String>> books = Arrays.asList(
+    private static final Logger LOGGER = LoggerFactory.getLogger(GraphQLDataFetchers.class);
+
+    public static List<Map<String, String>> books = Arrays.asList(
             ImmutableMap.of("id", "book-1",
                     "name", "Harry Potter and the Philosopher's Stone",
                     "pageCount", "223",
@@ -45,7 +49,7 @@ public class GraphQLDataFetchers {
             return books
                     .stream()
                     .peek(id -> {
-                        System.out.println("ID: " +id);
+                        LOGGER.info("ID: " +id);
                     })
                     .filter(book -> book.get("id").equals(bookId))
                     .findFirst()

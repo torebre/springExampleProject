@@ -18,7 +18,7 @@ import java.net.URL;
 
 import static graphql.schema.idl.TypeRuntimeWiring.newTypeWiring;
 
-@Component
+//@Component
 public class GraphQLProvider {
 
 
