@@ -1,6 +1,10 @@
-{
+query {
     bookById(id: "book-2") {
-        name
+        name,
+        author {
+            firstName
+            lastName
+        }
     }
 
 }

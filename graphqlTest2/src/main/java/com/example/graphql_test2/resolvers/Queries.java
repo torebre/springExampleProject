@@ -1,20 +1,23 @@
-package com.kjipo.graphqlExample;
+package com.example.graphql_test2.resolvers;
 
-
-import com.google.common.collect.ImmutableMap;
-import graphql.schema.DataFetcher;
+import com.example.graphql_test2.Author;
+import graphql.annotations.annotationTypes.GraphQLField;
+import graphql.com.google.common.collect.ImmutableMap;
+import graphql.kickstart.annotations.GraphQLQueryResolver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
-@Component
-public class GraphQLDataFetchers {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(GraphQLDataFetchers.class);
+@Service
+@GraphQLQueryResolver
+public class Queries {
 
     private static List<Map<String, String>> books = Arrays.asList(
             ImmutableMap.of("id", "book-1",
@@ -43,29 +46,18 @@ public class GraphQLDataFetchers {
                     "lastName", "Rice")
     );
 
-    public DataFetcher getBookByIdDataFetcher() {
-        return dataFetchingEnvironment -> {
-            String bookId = dataFetchingEnvironment.getArgument("id");
-            return books
-                    .stream()
-                    .peek(id -> {
-                        LOGGER.info("ID: " +id);
-                    })
-                    .filter(book -> book.get("id").equals(bookId))
-                    .findFirst()
-                    .orElse(null);
-        };
+    private static final Logger LOGGER = LoggerFactory.getLogger(Queries.class);
+
+    public Queries() {
+
     }
 
-    public DataFetcher getAuthorDataFetcher() {
-        return dataFetchingEnvironment -> {
-            Map<String, String> book = dataFetchingEnvironment.getSource();
-            String authorId = book.get("authorId");
-            return authors
-                    .stream()
-                    .filter(author -> author.get("id").equals(authorId))
-                    .findFirst()
-                    .orElse(null);
-        };
+    @GraphQLField
+    public static List<Author> authors() {
+        return authors.stream().map(dataMap -> {
+            return new Author(dataMap.get("id"), dataMap.get("firstName"), dataMap.get("lastName"));
+        }).collect(Collectors.toList());
     }
+
+
 }

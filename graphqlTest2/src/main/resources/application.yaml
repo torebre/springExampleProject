@@ -1,0 +1,5 @@
+graphql:
+  annotations.base-package: com.example.graphql_test2
+  graphiql:
+    enabled: true
+  schema-strategy: annotations
