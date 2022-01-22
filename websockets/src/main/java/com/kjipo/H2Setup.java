@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 // TODO This class is only here to try to make the H2 console available
 
-@Component
+//@Component
 //@Profile("test")
 public class H2Setup {
 

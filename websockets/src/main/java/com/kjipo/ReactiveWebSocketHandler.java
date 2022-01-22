@@ -34,9 +34,11 @@ public class ReactiveWebSocketHandler implements WebSocketHandler {
 
     @Override
     public Mono<Void> handle(WebSocketSession webSocketSession) {
+
         logger.info("Test24");
+
         return webSocketSession.send(intervalFlux
-                .map(webSocketSession::textMessage))
+                        .map(webSocketSession::textMessage))
                 .and(webSocketSession.receive()
                         .map(WebSocketMessage::getPayloadAsText)
                         .log());
