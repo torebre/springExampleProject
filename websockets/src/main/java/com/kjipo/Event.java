@@ -1,34 +1,55 @@
 package com.kjipo;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Objects;
 
+@Entity
 public class Event {
-    private String eventId;
-    private String eventDt;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long eventId;
+    private String message;
 
-    public Event(String eventId, String eventDt) {
-        this.eventId = eventId;
-        this.eventDt = eventDt;
+    public Event(String message) {
+        this.message = message;
     }
+
+    protected Event() {
+
+    }
+
+
+    public long getEventId() {
+        return eventId;
+    }
+
+
+    public String getMessage() {
+        return getMessage();
+    }
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Event)) return false;
         Event event = (Event) o;
-        return Objects.equals(eventId, event.eventId) && Objects.equals(eventDt, event.eventDt);
+        return eventId == event.eventId && Objects.equals(message, event.message);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(eventId, eventDt);
+        return Objects.hash(eventId, message);
     }
 
     @Override
     public String toString() {
         return "Event{" +
                 "eventId='" + eventId + '\'' +
-                ", eventDt='" + eventDt + '\'' +
+                ", eventDt='" + message + '\'' +
                 '}';
     }
 }

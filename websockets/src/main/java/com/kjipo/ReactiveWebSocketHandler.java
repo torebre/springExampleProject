@@ -25,7 +25,7 @@ public class ReactiveWebSocketHandler implements WebSocketHandler {
     private static final Logger logger = LoggerFactory.getLogger(ReactiveWebSocketConfiguration.class);
 
     private Flux<String> eventFlux = Flux.generate(sink -> {
-        Event event = new Event(randomUUID().toString(), now().toString());
+        Event event = new Event(now().toString());
         sink.next(gson.toJson(event));
     });
 
@@ -34,9 +34,6 @@ public class ReactiveWebSocketHandler implements WebSocketHandler {
 
     @Override
     public Mono<Void> handle(WebSocketSession webSocketSession) {
-
-        logger.info("Test24");
-
         return webSocketSession.send(intervalFlux
                         .map(webSocketSession::textMessage))
                 .and(webSocketSession.receive()
