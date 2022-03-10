@@ -1,5 +1,6 @@
-package com.kjipo;
+package com.kjipo.repository;
 
+import com.kjipo.model.Event;
 import org.springframework.data.repository.CrudRepository;
 
 

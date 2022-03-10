@@ -2,6 +2,7 @@ package com.kjipo;
 
 
 import com.google.gson.Gson;
+import com.kjipo.model.Event;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
