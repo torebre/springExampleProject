@@ -39,10 +39,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
-        <!--        <dependency>-->
-        <!--&lt;!&ndash;&lt;!&ndash;            <groupId>org.liquibase</groupId>&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;            <artifactId>liquibase-core</artifactId>&ndash;&gt;-->
-        <!--        </dependency>-->
+<!--                <dependency>-->
+<!--        <groupId>org.liquibase</groupId>-->
+<!--        <artifactId>liquibase-core</artifactId>-->
+<!--                </dependency>-->
         <!--        <dependency>-->
         <!--            <groupId>org.thymeleaf.extras</groupId>-->
         <!--            <artifactId>thymeleaf-extras-springsecurity5</artifactId>-->
