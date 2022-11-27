@@ -64,13 +64,14 @@ public class GraphqlController {
 
 
     @QueryMapping
-    public Map<String, String> author(@Argument String id) {
+    public Map<String, String> authorById(@Argument String id) {
         var author = authorRepository.findById(Long.valueOf(id));
+
+        LOGGER.info("Test23");
 
         return author.map(temp ->
                 Map.of("firstName", temp.getFirstName())).orElse(Collections.emptyMap());
 
-//
 //        return authors
 //                .stream()
 //                .filter(author -> author.get("id").equals(id))
