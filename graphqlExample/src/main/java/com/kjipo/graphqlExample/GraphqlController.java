@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.StreamSupport;
 
 
 @Controller
@@ -33,17 +34,6 @@ public class GraphqlController {
                     "authorId", "3")
     );
 
-//    private static List<Map<String, String>> authors = Arrays.asList(
-//            ImmutableMap.of("id", "author-1",
-//                    "firstName", "Joanne",
-//                    "lastName", "Rowling"),
-//            ImmutableMap.of("id", "author-2",
-//                    "firstName", "Herman",
-//                    "lastName", "Melville"),
-//            ImmutableMap.of("id", "author-3",
-//                    "firstName", "Anne",
-//                    "lastName", "Rice")
-//    );
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GraphqlController.class);
 
@@ -67,8 +57,6 @@ public class GraphqlController {
     public Map<String, String> authorById(@Argument String id) {
         var author = authorRepository.findById(Long.valueOf(id));
 
-        LOGGER.info("Test23");
-
         return author.map(temp ->
                 Map.of("firstName", temp.getFirstName())).orElse(Collections.emptyMap());
 
@@ -77,6 +65,12 @@ public class GraphqlController {
 //                .filter(author -> author.get("id").equals(id))
 //                .findFirst()
 //                .orElse(null);
+    }
+
+    @QueryMapping
+    public List<Author> authors() {
+        final var temp = StreamSupport.stream(authorRepository.findAll().spliterator(), false).toList();
+        return temp;
     }
 
 }

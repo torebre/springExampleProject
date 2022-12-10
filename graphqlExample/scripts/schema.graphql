@@ -1,5 +1,5 @@
 type Query {
-    hello: String
+    authors: [Author]
     bookById(id: ID): Book
     authorById(id: ID): Author
 }

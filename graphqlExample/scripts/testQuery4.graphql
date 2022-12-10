@@ -1,3 +1,7 @@
 query {
-    hello
+    authors {
+        id
+        firstName
+        lastName
+    }
 }

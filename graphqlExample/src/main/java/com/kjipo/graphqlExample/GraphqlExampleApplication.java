@@ -3,6 +3,8 @@ package com.kjipo.graphqlExample;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.web.filter.CommonsRequestLoggingFilter;
 
 @SpringBootApplication
 public class GraphqlExampleApplication {
@@ -11,9 +13,10 @@ public class GraphqlExampleApplication {
         SpringApplication.run(GraphqlExampleApplication.class, args);
     }
 
-    @Bean
-    ContextWebFilter reactorContextWebFilter() {
-        return new ContextWebFilter();
-    }
+//    @Bean
+//    ContextWebFilter reactorContextWebFilter() {
+//        return new ContextWebFilter();
+//    }
+
 
 }
