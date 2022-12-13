@@ -1,11 +1,13 @@
-package com.kjipo.graphqlExample;
+package com.kjipo.graphqlExample.controller;
 
 
 import com.google.common.collect.ImmutableMap;
+import com.kjipo.graphqlExample.Author;
+import com.kjipo.graphqlExample.AuthorRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
@@ -34,14 +36,15 @@ public class GraphqlController {
                     "authorId", "3")
     );
 
+    private final AuthorRepository authorRepository;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GraphqlController.class);
 
-    @Autowired
-    GraphQLDataFetchers graphQLDataFetchers;
+    public GraphqlController(AuthorRepository authorRepository) {
+        this.authorRepository = authorRepository;
+    }
 
-    @Autowired
-    AuthorRepository authorRepository;
+
 
     @QueryMapping
     public Map<String, String> bookById(@Argument String id) {
@@ -71,6 +74,12 @@ public class GraphqlController {
     public List<Author> authors() {
         final var temp = StreamSupport.stream(authorRepository.findAll().spliterator(), false).toList();
         return temp;
+    }
+
+    @MutationMapping
+    public String deleteAuthor(@Argument String author) {
+        // TODO
+        return "";
     }
 
 }
