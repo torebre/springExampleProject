@@ -27,4 +27,27 @@
         </createTable>
     </changeSet>
 
+    <changeSet author="na" id="2">
+        <createTable tableName="book">
+            <column autoIncrement="true" name="id" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="title" type="varchar(256)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="page_count" type="smallint">
+                <constraints nullable="true"/>
+            </column>
+            <column name="author_id" type="int">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="book"
+                                 baseColumnNames="author_id"
+                                 constraintName="book_author_id"
+                                 referencedTableName="author"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
 </databaseChangeLog>

@@ -1,17 +1,15 @@
 package com.kjipo.graphqlExample.controller;
 
 
-import com.google.common.collect.ImmutableMap;
 import com.kjipo.graphqlExample.Author;
 import com.kjipo.graphqlExample.AuthorRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.kjipo.graphqlExample.Book;
+import com.kjipo.graphqlExample.BookRepository;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -21,59 +19,39 @@ import java.util.stream.StreamSupport;
 @Controller
 public class GraphqlController {
 
-    private static List<Map<String, String>> books = Arrays.asList(
-            ImmutableMap.of("id", "book-1",
-                    "name", "Harry Potter and the Philosopher's Stone",
-                    "pageCount", "223",
-                    "authorId", "1"),
-            ImmutableMap.of("id", "book-2",
-                    "name", "Moby Dick",
-                    "pageCount", "635",
-                    "authorId", "2"),
-            ImmutableMap.of("id", "book-3",
-                    "name", "Interview with the vampire",
-                    "pageCount", "371",
-                    "authorId", "3")
-    );
-
     private final AuthorRepository authorRepository;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(GraphqlController.class);
+    private final BookRepository bookRepository;
 
-    public GraphqlController(AuthorRepository authorRepository) {
+
+    public GraphqlController(AuthorRepository authorRepository, BookRepository bookRepository) {
         this.authorRepository = authorRepository;
+        this.bookRepository = bookRepository;
     }
 
 
-
     @QueryMapping
-    public Map<String, String> bookById(@Argument String id) {
-        return books
-                .stream()
-                .filter(book -> book.get("id").equals(id))
-                .findFirst()
-                .orElse(null);
+    public Map<String, String> bookById(@Argument long id) {
+        return bookRepository.findById(id).map(book -> Map.of("title", book.getTitle(),
+                        "pageCount", String.valueOf(book.getPageCount())))
+                .orElse(Collections.emptyMap());
     }
 
 
     @QueryMapping
     public Map<String, String> authorById(@Argument String id) {
-        var author = authorRepository.findById(Long.valueOf(id));
-
-        return author.map(temp ->
+        return authorRepository.findById(Long.valueOf(id)).map(temp ->
                 Map.of("firstName", temp.getFirstName())).orElse(Collections.emptyMap());
-
-//        return authors
-//                .stream()
-//                .filter(author -> author.get("id").equals(id))
-//                .findFirst()
-//                .orElse(null);
     }
 
     @QueryMapping
     public List<Author> authors() {
-        final var temp = StreamSupport.stream(authorRepository.findAll().spliterator(), false).toList();
-        return temp;
+        return StreamSupport.stream(authorRepository.findAll().spliterator(), false).toList();
+    }
+
+    @QueryMapping
+    public List<Book> books() {
+        return StreamSupport.stream(bookRepository.findAll().spliterator(), false).toList();
     }
 
     @MutationMapping
