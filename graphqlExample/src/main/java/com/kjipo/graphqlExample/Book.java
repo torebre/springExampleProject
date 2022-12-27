@@ -2,6 +2,8 @@ package com.kjipo.graphqlExample;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Book {
@@ -13,7 +15,12 @@ public class Book {
 
     private int pageCount;
 
-    private long authorId;
+    @ManyToOne
+    @JoinColumn(name = "authorId")
+    private Author author;
+
+    public Book() {
+    }
 
     public long getId() {
         return id;
@@ -31,7 +38,7 @@ public class Book {
         return pageCount;
     }
 
-    public long getAuthorId() {
-        return authorId;
+    public Author getAuthor() {
+        return author;
     }
 }
